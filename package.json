@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "wdio wdio.conf.js"
+    "test": "wdio wdio.conf.js",
+    "test-spec": "npm run test -- --spec $1",
+    "test-rdc": "wdio wdio.conf.rdc.js",
+    "test-screener": "screener-runner --conf screener.config.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +18,8 @@
     "@wdio/mocha-framework": "^5.12.1",
     "@wdio/sauce-service": "^5.12.5",
     "@wdio/spec-reporter": "^5.12.1",
-    "@wdio/sync": "^5.12.3"
+    "@wdio/sync": "^5.12.3",
+    "chai": "^4.2.0",
+    "screener-runner": "^0.10.43"
   }
 }

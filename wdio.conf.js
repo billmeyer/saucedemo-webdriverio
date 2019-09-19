@@ -1,4 +1,39 @@
+const sauceOptions = {
+    'sauce:options': {
+        extendedDebugging: true,
+        capturePerformance: true,
+        // use latest internal Sauce driver
+        crmuxdriverVersion: 'beta',
+        build: 'Performance Build',
+    },
+};
+
 exports.config = {
+    sauce: {
+        username: process.env.SAUCE_USERNAME,
+        accessKey: process.env.SAUCE_ACCESS_KEY,
+        maxConcurrent: 10, // optional available concurrency you have from Sauce Labs
+        // extendedDebugging: true, // optional
+        // tunnelIdentifier: 'MyTunnel01' // optional
+    },
+
+    resolution: '1024x768',
+    baseBranch: 'master',
+    browsers: [
+        {
+            browserName: 'chrome'
+        }
+        // {
+        //   browserName: 'safari',
+        //   version: '11.1'
+        // }
+    ],
+    // full repository name for your project:
+    projectRepo: 'user/my-project-repo',
+
+    // this example assumes Environment Variables listed below exist on your system:
+    apiKey: process.env.SCREENER_API_KEY,
+
     //
     // ====================
     // Runner Configuration
@@ -62,9 +97,17 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [
-        {browserName: 'firefox', platformName: 'Windows 10', browserVersion: 'latest', 'sauce:options': {'seleniumVersion': '3.14.0'}},
-        {browserName: 'chrome', platform: 'OS X 10.13', version: 'latest'},
-        {browserName: 'internet explorer', platform: 'Windows 10', version: '11.0'}
+        // {browserName: 'firefox',
+        //     platformName: 'Windows 10',
+        //     browserVersion: 'latest',
+        //     'sauce:options': {'seleniumVersion': '3.14.0'}},
+        {browserName: 'chrome',
+            platformName: 'OS X 10.13',
+            browserVersion: 'latest',
+            ...sauceOptions},
+        // {browserName: 'internet explorer',
+        //     platformName: 'Windows 10',
+        //     browserVersion: '11.0'}
     ],
     //
     // ===================
